@@ -23,6 +23,7 @@ interface PDFDownloadButtonProps {
     variation: Variation;
     dimensions: ProjectDimensions;
     notes?: string;
+    subVariant?: string;
 }
 
 export function PDFDownloadButton({
@@ -30,6 +31,7 @@ export function PDFDownloadButton({
     variation,
     dimensions,
     notes,
+    subVariant,
 }: PDFDownloadButtonProps) {
     return (
         <PDFDownloadLink
@@ -39,6 +41,7 @@ export function PDFDownloadButton({
                     variation={variation}
                     dimensions={dimensions}
                     notes={notes}
+                    subVariant={subVariant}
                 />
             }
             fileName={`${projectName.replace(/\s+/g, "_")}_Sketch.pdf`}

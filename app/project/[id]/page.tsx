@@ -67,6 +67,7 @@ export default function ProjectEditor() {
                         variation={variation}
                         dimensions={project.dimensions}
                         notes={project.notes}
+                        subVariant={project.subVariant || "П профил"}
                     />
                 </div>
             </header>
@@ -75,6 +76,31 @@ export default function ProjectEditor() {
             <div className="flex-1 flex overflow-hidden">
                 {/* Sidebar */}
                 <aside className="w-80 border-r bg-muted/10 p-6 overflow-y-auto">
+                    <h3 className="font-medium mb-4">Детайли за Варианта</h3>
+                    <div className="text-sm text-muted-foreground mb-4">
+                        <p className="mb-2">Тип: {variation.name}</p>
+                    </div>
+
+                    <h4 className="font-medium text-sm mb-3">Подвариант</h4>
+                    <div className="flex gap-2 w-full mb-6">
+                        <Button
+                            variant={(!project.subVariant || project.subVariant === "П профил") ? "default" : "outline"}
+                            className="flex-1"
+                            onClick={() => updateProject(id, { subVariant: "П профил" })}
+                        >
+                            П профил
+                        </Button>
+                        <Button
+                            variant={project.subVariant === "Клипс" ? "default" : "outline"}
+                            className="flex-1"
+                            onClick={() => updateProject(id, { subVariant: "Клипс" })}
+                        >
+                            Клипс
+                        </Button>
+                    </div>
+
+                    <Separator className="my-6" />
+
                     <h3 className="font-medium mb-4">Размери</h3>
 
                     <div className="mb-6 border rounded-lg overflow-hidden bg-white">
@@ -120,13 +146,6 @@ export default function ProjectEditor() {
                         </div>
                     </div>
 
-                    <Separator className="my-6" />
-
-                    <h3 className="font-medium mb-4">Детайли за Варианта</h3>
-                    <div className="text-sm text-muted-foreground">
-                        <p className="mb-2">Тип: {variation.name}</p>
-                        {/* Future: Add more details or variation switching */}
-                    </div>
                 </aside>
 
                 {/* Canvas Area */}
@@ -137,6 +156,7 @@ export default function ProjectEditor() {
                             variation={variation}
                             dimensions={project.dimensions}
                             notes={project.notes}
+                            subVariant={project.subVariant || "П профил"}
                         />
                     </Card>
                 </main>

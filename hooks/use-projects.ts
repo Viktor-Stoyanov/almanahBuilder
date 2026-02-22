@@ -11,6 +11,7 @@ export type Project = {
     createdAt: string;
     updatedAt: string;
     variationId: string;
+    subVariant?: "П профил" | "Клипс";
     dimensions: ProjectDimensions;
 };
 
@@ -58,6 +59,7 @@ export function useProjects() {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             variationId,
+            subVariant: "П профил",
             dimensions: initialDimensions,
         };
         saveProjects([newProject, ...projects]);

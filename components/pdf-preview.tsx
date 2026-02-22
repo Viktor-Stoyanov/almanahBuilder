@@ -9,9 +9,10 @@ interface PdfPreviewProps {
     variation: Variation;
     dimensions: ProjectDimensions;
     notes?: string;
+    subVariant?: string;
 }
 
-export default function PdfPreview({ projectName, variation, dimensions, notes }: PdfPreviewProps) {
+export default function PdfPreview({ projectName, variation, dimensions, notes, subVariant }: PdfPreviewProps) {
     return (
         <PDFViewer width="100%" height="100%" className="w-full h-full border-none">
             <ShowerSketchPdf
@@ -19,6 +20,7 @@ export default function PdfPreview({ projectName, variation, dimensions, notes }
                 variation={variation}
                 dimensions={dimensions}
                 notes={notes}
+                subVariant={subVariant}
             />
         </PDFViewer>
     );

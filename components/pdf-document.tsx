@@ -89,15 +89,16 @@ interface ShowerSketchPdfProps {
     variation: Variation;
     dimensions: ProjectDimensions;
     notes?: string;
+    subVariant?: string;
 }
 
-export function ShowerSketchPdf({ projectName, variation, dimensions, notes }: ShowerSketchPdfProps) {
+export function ShowerSketchPdf({ projectName, variation, dimensions, notes, subVariant }: ShowerSketchPdfProps) {
     const getValue = (id: string) => {
         // Return dimension if it exists (including 0)
         if (dimensions[id] !== undefined) return dimensions[id];
 
         // Fallback to default value from variation configuration
-        const input = variation.inputs.find(i => i.id === id);
+        const input = variation.inputs.find((i) => i.id === id);
         return input?.defaultValue ?? 0;
     };
 
@@ -107,7 +108,10 @@ export function ShowerSketchPdf({ projectName, variation, dimensions, notes }: S
                 {/* 1. Header with Title and Variation Name */}
                 <View style={styles.header}>
                     <Text style={styles.title}>{projectName}</Text>
-                    <Text style={styles.subtitle}>{variation.name}</Text>
+                    <Text style={styles.subtitle}>
+                        {variation.name}
+                        {subVariant ? ` - ${subVariant}` : ""}
+                    </Text>
                 </View>
 
                 {/* 2. Notes Section */}
